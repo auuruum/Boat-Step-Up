@@ -16,6 +16,10 @@ buildscript {
     }
 }
 
+plugins {
+    id 'base'
+}
+
 subprojects {
     group = mod_group_id
     version = "${minecraft_version}-${mod_version}"
@@ -51,6 +55,25 @@ subprojects {
             }
         }
     }
+}
+
+tasks.register('universalJar', Jar) {
+    group = 'build'
+    description = 'Builds one experimental jar containing Fabric, Quilt, Forge, and NeoForge metadata/classes.'
+    archiveBaseName.set(mod_id)
+    archiveVersion.set("${minecraft_version}-${mod_version}")
+    archiveClassifier.set('universal')
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    dependsOn ':fabric:remapJar', ':forge:jar', ':neoforge:jar'
+
+    from({ zipTree(project(':fabric').tasks.named('remapJar').get().archiveFile.get().asFile) })
+    from({ zipTree(project(':forge').tasks.named('jar').get().archiveFile.get().asFile) })
+    from({ zipTree(project(':neoforge').tasks.named('jar').get().archiveFile.get().asFile) })
+}
+
+tasks.named('build') {
+    dependsOn ':fabric:build', ':forge:build', ':neoforge:build', tasks.named('universalJar')
 }
 
 ext.modProps = {

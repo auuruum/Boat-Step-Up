@@ -21,6 +21,6 @@
     ]
   },
   "mixin": [
-    "${mod_id}.mixins.json"
+    "${mod_id}.fabric.mixins.json"
   ]
 }
