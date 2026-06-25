@@ -1,0 +1,15 @@
+apply plugin: 'net.neoforged.moddev'
+
+base {
+    archivesName = "${mod_id}-neoforge"
+}
+
+neoForge {
+    version = neoforge_version
+
+    mods {
+        "${mod_id}" {
+            sourceSet sourceSets.main
+        }
+    }
+}

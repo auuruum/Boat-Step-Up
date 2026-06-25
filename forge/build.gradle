@@ -1,0 +1,36 @@
+apply plugin: 'net.minecraftforge.gradle'
+
+base {
+    archivesName = "${mod_id}-forge"
+}
+
+minecraft {
+    mappings channel: 'official', version: minecraft_version
+    reobf = false
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.console.level', 'debug'
+            mods {
+                "${mod_id}" {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run')
+            args '--nogui'
+            mods {
+                "${mod_id}" {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+}

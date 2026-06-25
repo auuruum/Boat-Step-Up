@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "quilt_loader": {
+    "group": "${mod_group_id}",
+    "id": "${mod_id}",
+    "version": "${mod_version}",
+    "metadata": {
+      "name": "${mod_name}",
+      "description": "${mod_description}",
+      "contributors": {
+        "${mod_authors}": "Owner"
+      },
+      "license": "${mod_license}",
+      "icon": "logo.png"
+    },
+    "depends": [
+      {
+        "id": "minecraft",
+        "versions": "${minecraft_version_range}"
+      }
+    ]
+  },
+  "mixin": [
+    "${mod_id}.mixins.json"
+  ]
+}
