@@ -16,7 +16,7 @@
     "depends": [
       {
         "id": "minecraft",
-        "versions": "${minecraft_version_range}"
+        "versions": "${fabric_minecraft_version_range}"
       }
     ]
   },

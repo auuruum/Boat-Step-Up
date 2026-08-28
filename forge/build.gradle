@@ -1,3 +1,4 @@
+apply plugin: 'java'
 apply plugin: 'net.minecraftforge.gradle'
 
 base {
@@ -6,12 +7,14 @@ base {
 
 minecraft {
     mappings channel: 'official', version: minecraft_version
-    reobf = false
 
     runs {
+        configureEach {
+            workingDir.convention project.layout.projectDirectory.dir('run')
+        }
+
         client {
-            workingDirectory project.file('run')
-            property 'forge.logging.console.level', 'debug'
+            systemProperty 'forge.logging.console.level', 'debug'
             mods {
                 "${mod_id}" {
                     source sourceSets.main
@@ -20,7 +23,6 @@ minecraft {
         }
 
         server {
-            workingDirectory project.file('run')
             args '--nogui'
             mods {
                 "${mod_id}" {
@@ -31,6 +33,13 @@ minecraft {
     }
 }
 
+repositories {
+    minecraft.mavenizer(it)
+    maven fg.forgeMaven
+    maven fg.minecraftLibsMaven
+    mavenCentral()
+}
+
 dependencies {
-    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    implementation minecraft.dependency("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
 }
