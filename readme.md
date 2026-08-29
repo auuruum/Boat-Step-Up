@@ -6,6 +6,9 @@ Fabric, Quilt, Forge, and NeoForge builds.
 The Fabric metadata declares compatibility with Minecraft 1.21.1 through
 1.21.11. The release is compiled against Minecraft 1.21.11.
 
+This variant enables the one-block step only on ice, including ice below a
+carpet, and keeps boats slippery when a carpet is placed on ice.
+
 Build with:
 
 ```text

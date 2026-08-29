@@ -4,7 +4,8 @@
   "package": "com.aurum.boatstepup.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "ForgeEntityMixin"
+    "ForgeEntityMixin",
+    "ForgeBoatMixin"
   ],
   "injectors": {
     "defaultRequire": 1
